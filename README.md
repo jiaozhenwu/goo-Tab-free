@@ -54,6 +54,7 @@ The extension groups tabs by domain, pulls homepage-style tabs such as Gmail, X,
 - 首页类网站很多，想快速批量清理
 - 同一页面反复打开，导致重复标签堆积
 - 想先把稍后再看的内容存起来，再做一次集中整理
+![背景图](extension/assets/_018.png)
 
 **English**
 
