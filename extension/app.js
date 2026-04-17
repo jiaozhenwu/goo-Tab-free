@@ -1,5 +1,5 @@
 /* ================================================================
-   Tab Out — Dashboard App (Pure Extension Edition)
+   Goo-Tab-Free — Dashboard App (Pure Extension Edition)
 
    This file is the brain of the dashboard. Now that the dashboard
    IS the extension page (not inside an iframe), it can call
@@ -52,7 +52,7 @@ async function fetchOpenTabs() {
       autoDiscardable: t.autoDiscardable,
       lastAccessed: t.lastAccessed,
       pinned:   t.pinned,
-      // Flag Tab Out's own pages so we can detect duplicate new tabs
+      // Flag Goo-Tab-Free's own pages so we can detect duplicate new tabs
       isTabOut: t.url === newtabUrl || t.url === 'chrome://newtab/',
     }));
   } catch {
@@ -405,7 +405,7 @@ async function closeDuplicateTabs(urls, keepOne = true) {
 /**
  * closeTabOutDupes()
  *
- * Closes all duplicate Tab Out new-tab pages except the current one.
+ * Closes all duplicate Goo-Tab-Free new-tab pages except the current one.
  */
 async function closeTabOutDupes() {
   const extensionId = chrome.runtime.id;
@@ -419,7 +419,7 @@ async function closeTabOutDupes() {
 
   if (tabOutTabs.length <= 1) return;
 
-  // Keep the active Tab Out tab in the CURRENT window — that's the one the
+  // Keep the active Goo-Tab-Free tab in the CURRENT window — that's the one the
   // user is looking at right now. Falls back to any active one, then the first.
   const keep =
     tabOutTabs.find(t => t.active && t.windowId === currentWindow.id) ||
@@ -970,7 +970,7 @@ function getRealTabs() {
 /**
  * checkTabOutDupes()
  *
- * Counts how many Tab Out pages are open. If more than 1,
+ * Counts how many Goo-Tab-Free pages are open. If more than 1,
  * shows a banner offering to close the extras.
  */
 function checkTabOutDupes() {
@@ -1358,7 +1358,7 @@ async function renderStaticDashboard() {
   const statTabs = document.getElementById('statTabs');
   if (statTabs) statTabs.textContent = openTabs.length;
 
-  // --- Check for duplicate Tab Out tabs ---
+  // --- Check for duplicate Goo-Tab-Free tabs ---
   checkTabOutDupes();
 
   // --- Render "Saved for Later" column ---
@@ -1388,7 +1388,7 @@ document.addEventListener('click', async (e) => {
 
   const action = actionEl.dataset.action;
 
-  // ---- Close duplicate Tab Out tabs ----
+  // ---- Close duplicate Goo-Tab-Free tabs ----
   if (action === 'close-tabout-dupes') {
     await closeTabOutDupes();
     playCloseSound();
@@ -1398,7 +1398,7 @@ document.addEventListener('click', async (e) => {
       banner.style.opacity = '0';
       setTimeout(() => { banner.style.display = 'none'; banner.style.opacity = '1'; }, 400);
     }
-    showToast('Closed extra Tab Out tabs');
+    showToast('Closed extra Goo-Tab-Free tabs');
     return;
   }
 
